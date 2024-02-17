@@ -1,0 +1,52 @@
+#????
+server:
+  port: 8088
+  servlet:
+    context-path: /crm-api
+
+spring:
+  application:
+    name:crm-api
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver       # mysql ??
+    url: jdbc:mysql://127.0.0.1:3306/dbcrm?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&serverTimezone=GMT%2B8 # ?8?
+    username: root
+    password: 121113
+    hikari:
+      pool-name: DateSourceHikariCP #?????
+      connection-timeout: 30000 #?????????
+      maximum-pool-size: 20 #??????
+      max-lifetime: 1800000 #?????????
+      keepalive-time: 1750000 #?????????
+      connection-test-query: SELECT 1 #????sql
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  data:
+    redis:
+      database: 0
+      host: 127.0.0.1
+      port: 6379
+  #  ??mvc????springboot2.6.1???swagger3????????????Springboot???????
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.example.enterprise.*.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+logging:
+  level:
+    com:
+      example:
+        mapper: debug
