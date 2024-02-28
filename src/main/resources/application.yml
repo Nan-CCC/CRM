@@ -1,4 +1,3 @@
-#????
 server:
   port: 8088
   servlet:
@@ -28,7 +27,6 @@ spring:
       database: 0
       host: 127.0.0.1
       port: 6379
-  #  ??mvc????springboot2.6.1???swagger3????????????Springboot???????
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -50,3 +48,22 @@ logging:
     com:
       example:
         mapper: debug
+
+jwt:
+  #设置过期时间
+  expirationDate: 7
+  # 时间类型，HOUR、DAY
+  timeUnit: DAYS
+  # 请求头名字
+  tokenHeaderName: jzbooks-api
+  # jey的签名
+  key: 3686fhahf#%&#h#VD%@S!
+
+# 配置拦截与不拦截的url
+interceptor:
+  includePathPatterns: /**
+  # 格式  /sys_user,sys_user/l,
+  excludePathPatterns: /login
+
+
+

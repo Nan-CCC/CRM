@@ -17,10 +17,10 @@ import lombok.ToString;
 @ApiModel(value = "User", description = "员工实体类")
 public class User {
     @ApiModelProperty("员工编号")
-    @TableId(value = "user_id")
+    @TableId(value = "u_id")
     private String id;
     @ApiModelProperty("员工姓名")
-    @TableField("user_name")
+    @TableField("u_name")
     private String name;
     @ApiModelProperty("密码")
     @TableField("password")
