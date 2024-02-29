@@ -31,4 +31,9 @@ public class User {
     @ApiModelProperty("权限")
     @TableField("authority")
     private Integer authority;
+
+    public User(String name,String department){
+        this.name=name;
+        this.department=department;
+    }
 }
