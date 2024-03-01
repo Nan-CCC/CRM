@@ -6,7 +6,6 @@ import com.example.enterprisecrm.entity.Platform;
 import com.example.enterprisecrm.mapper.PlatformMapper;
 import com.example.enterprisecrm.service.PlatformService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 
