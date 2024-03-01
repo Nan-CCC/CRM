@@ -1,25 +1,18 @@
 package com.example.enterprisecrm.service.servicelmpl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.enterprisecrm.entity.User;
 import com.example.enterprisecrm.mapper.UserMapper;
 import com.example.enterprisecrm.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import javax.annotation.Resource;
 import java.util.List;
-
-import static net.sf.jsqlparser.parser.feature.Feature.insert;
 
 @Service
 public class UserServicelmpl extends ServiceImpl<UserMapper,User> implements UserService {
-    @Autowired
+    @Resource
     UserMapper userMapper;
     @Override
     public User login(String id, String password) {
@@ -54,14 +47,8 @@ public class UserServicelmpl extends ServiceImpl<UserMapper,User> implements Use
     public User insertUser(User user) {
         int flag = userMapper.insert(user);
         if(flag!=0){
-            //Lambda使wapper可以使用实体字段而不是数据库字段
-            //例：
-            //wrapper.eq("banner_id", id);
-            //wrapper.lambda().eq(BannerItem::getBannerId, id);
             LambdaQueryWrapper<User> wrapper = new LambdaQueryWrapper<>();
-            //根据id降序排列
             wrapper.orderByDesc(User::getId);
-            //last拼接sql语句 限制1条
             wrapper.last("limit 1");
             User selectOne = userMapper.selectOne(wrapper);
             return selectOne;

@@ -30,6 +30,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+    # 配置文件上传大小和总上传文件大小
+    servlet:
+      multipart:
+        max-file-size: 10MB
+        max-request-size: 1000MB
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml

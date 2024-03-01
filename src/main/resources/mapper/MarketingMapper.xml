@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.enterprisecrm.mapper.MarketingMapper">
+    <resultMap id="MarketMap" type="com.example.enterprisecrm.entity.Marketing">
+        <id column="mk_id" property="id"/>
+        <result column="mk_name" property="name"/>
+        <result column="mk_info" property="info"/>
+        <result column="mk_cost" property="cost"/>
+        <result column="mk_start" property="start"/>
+        <result column="mk_end" property="end"/>
+        <result column="mk_status" property="status"/>
+        <result column="approver" property="approver"/>
+        <result column="approver_notes" property="notes"/>
+        <result column="mk_pass" property="pass"/>
+    </resultMap>
+</mapper>
