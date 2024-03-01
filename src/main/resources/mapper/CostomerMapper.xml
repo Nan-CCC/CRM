@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.enterprisecrm.mapper.CustomerMapper">
+    <resultMap id="CustomerMap" type="com.example.enterprisecrm.entity.Customer">
+        <id column="c_id" property="id"/>
+        <result column="c_name" property="name"/>
+        <result column="c_age" property="age"/>
+        <result column="c_company" property="company"/>
+        <result column="c_phone" property="phone"/>
+        <result column="c_email" property="email"/>
+        <result column="c_notes" property="notes"/>
+        <result column="market_id" property="mid"/>
+        <result column="platform_id" property="pid"/>
+    </resultMap>
+</mapper>

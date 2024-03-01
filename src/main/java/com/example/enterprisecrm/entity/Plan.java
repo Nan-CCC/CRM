@@ -23,7 +23,7 @@ public class Plan {
     private String mid;
     @ApiModelProperty("员工编号")
     @TableField("user_id")
-    private String UID;
+    private String uid;
     @ApiModelProperty("活动提交时间")
     @TableField("submit")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")

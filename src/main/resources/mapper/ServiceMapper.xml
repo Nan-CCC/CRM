@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.enterprisecrm.mapper.ServiceMapper">
+    <resultMap id="serviceMap" type="com.example.enterprisecrm.entity.Service">
+        <id column="s_id" property="id" />
+        <result column="s_type" property="type"/>
+        <result column="s_content" property="content"/>
+        <result column="s_status" property="status"/>
+        <result column="s_create" property="create"/>
+        <result column="order_id" property="oid"/>
+        <result column="customer_id" property="cid"/>
+    </resultMap>
+</mapper>

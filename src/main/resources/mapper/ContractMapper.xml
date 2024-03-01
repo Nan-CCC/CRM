@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.enterprisecrm.mapper.ContractMapper">
+    <resultMap id="ContractMap" type="com.example.enterprisecrm.entity.Contract">
+        <id column="ct_id" property="id"/>
+        <result column="ct_content" property="content"/>
+        <result column="ct_status" property="status"/>
+        <result column="ct_submit" property="submit"/>
+        <result column="order_id" property="oid"/>
+    </resultMap>
+</mapper>

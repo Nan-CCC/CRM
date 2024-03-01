@@ -29,8 +29,8 @@ public class Service {
     private String content;
 
     @ApiModelProperty("处理状态")
-    @TableField("s_statuus")
-    private String statuus;
+    @TableField("s_status")
+    private String status;
     @ApiModelProperty("创建时间")
     @TableField("s_create")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
