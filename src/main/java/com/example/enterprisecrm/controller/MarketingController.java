@@ -5,7 +5,7 @@ import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.entity.Marketing;
 import com.example.enterprisecrm.service.MarketingService;
-import com.example.enterprisecrm.service.servicelmpl.MarketingServicelmpl;
+import com.example.enterprisecrm.service.servicelmpl.MarketingServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ import java.util.List;
 @Api(tags = "MarketApi") //swagger 接口说明
 public class MarketingController {
     @Resource
-    private MarketingService service=new MarketingServicelmpl();
+    private MarketingService service;
 
     @PostMapping("/add")
     @ApiOperation(value = "增加活动")

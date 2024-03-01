@@ -6,12 +6,12 @@ import com.example.enterprisecrm.entity.Marketing;
 import com.example.enterprisecrm.mapper.MarketingMapper;
 import com.example.enterprisecrm.service.MarketingService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class MarketingServicelmpl extends ServiceImpl<MarketingMapper, Marketing> implements MarketingService {
+public class MarketingServiceImpl extends ServiceImpl<MarketingMapper, Marketing> implements MarketingService {
     @Resource
     private MarketingMapper mapper;
     @Override

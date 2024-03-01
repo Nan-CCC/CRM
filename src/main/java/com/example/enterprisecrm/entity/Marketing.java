@@ -17,7 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@ApiModel(value = "Marketing",description = "营销活动实体类")
+@ApiModel(description = "营销活动实体类")
 public class Marketing {
     @TableId("mk_id")
     @ApiModelProperty("营销编号")

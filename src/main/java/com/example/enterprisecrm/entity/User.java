@@ -14,10 +14,10 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@ApiModel(value = "User", description = "员工实体类")
+@ApiModel(description = "员工实体类")
 public class User {
     @ApiModelProperty("员工编号")
-    @TableId(value = "u_id")
+    @TableId("u_id")
     private String id;
     @ApiModelProperty("员工姓名")
     @TableField("u_name")

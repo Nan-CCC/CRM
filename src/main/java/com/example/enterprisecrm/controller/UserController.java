@@ -6,7 +6,7 @@ import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.common.util.JwtUtil;
 import com.example.enterprisecrm.entity.User;
 import com.example.enterprisecrm.service.UserService;
-import com.example.enterprisecrm.service.servicelmpl.UserServicelmpl;
+import com.example.enterprisecrm.service.servicelmpl.UserServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +25,8 @@ import java.util.concurrent.TimeUnit;
 @AllArgsConstructor
 @Api(tags = "UserApi") //swagger 接口说明
 public class UserController {
-    UserService userService=new UserServicelmpl();
+    @Resource
+    UserService userService;
     RedisTemplate redisTemplate;
     @PostMapping("/login")
     @ApiOperation(value = "登录")
