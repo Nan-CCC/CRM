@@ -2,7 +2,6 @@ package com.example.enterprisecrm.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -10,14 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @ApiModel(description = "订单实体类")
-public class Order {
+public class Orders {
     @ApiModelProperty("订单编号")
     @TableId("o_id")
     private String id;
@@ -38,8 +37,8 @@ public class Order {
     private String address;
     @ApiModelProperty("创建时间")
     @TableField("creare")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date creare;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime create;
     @ApiModelProperty("员工编号")
     @TableField("user_id")
     private String uid;

@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.enterprisecrm.mapper.OrderMapper">
-    <resultMap id="orderMap" type="com.example.enterprisecrm.entity.Order">
+    <resultMap id="orderMap" type="com.example.enterprisecrm.entity.Orders">
         <id column="o_id" property="id"/>
         <result column="o_status" property="status"/>
         <result column="province" property="province"/>
         <result column="city" property="city"/>
         <result column="district" property="district"/>
         <result column="o_address" property="address"/>
-        <result column="creare" property="creare"/>
+        <result column="create" property="create"/>
         <result column="user_id" property="uid"/>
         <result column="customer_id" property="cid"/>
         <result column="contract_id" property="ctid"/>
