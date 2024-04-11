@@ -11,8 +11,9 @@
         <result column="c_company" property="company"/>
         <result column="c_phone" property="phone"/>
         <result column="c_email" property="email"/>
-        <result column="c_notes" property="notes"/>
+        <result column="c_notes" property="info"/>
         <result column="market_id" property="mid"/>
         <result column="platform_id" property="pid"/>
+        <result column="owner" property="uid"/>
     </resultMap>
 </mapper>

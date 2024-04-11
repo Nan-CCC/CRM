@@ -8,6 +8,7 @@ import com.example.enterprisecrm.entity.User;
 import com.example.enterprisecrm.service.UserService;
 import com.example.enterprisecrm.service.servicelmpl.UserServiceImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,9 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 //用于标记一个类，表明该类是一个控制器，并且其下的方法都将返回数据作为响应
@@ -30,21 +33,54 @@ public class UserController {
     RedisTemplate redisTemplate;
     @PostMapping("/login")
     @ApiOperation(value = "登录")
-    public Result login(@RequestParam String id, @RequestParam String password){
-        User login = userService.login(id, password);
-        if(login!=null){
-            String token = JwtUtil.createToken(login.getId());
-            ValueOperations<String, String> valueOperations =redisTemplate.opsForValue();
-            valueOperations.set("token:" + token, login.getId());
-            redisTemplate.expire("token:" + token, 3, TimeUnit.MINUTES);
-            return ResultUtil.success("登录成功",login);
-        }else {
+    public Result login(@RequestParam String id, @RequestParam String password, @RequestParam String verify, HttpSession session){
+        String verifyCode = session.getAttribute("verifyCode")+"";
+        //测试验证码
+        if(verify.equals("123")){
+            User login = userService.login(id, password);
+            if(login!=null){
+                redisTemplate.delete("token:");
+                String token = JwtUtil.createToken(login.getId());
+                ValueOperations<String, String> valueOperations =redisTemplate.opsForValue();
+                valueOperations.set("token:" + token, login.getId());
+                redisTemplate.persist("token:" + token);
+                redisTemplate.expire("token:" + token, 10, TimeUnit.MINUTES);
+                return ResultUtil.success("登录成功",token);
+            }
             return ResultUtil.error("用户名或密码错误");
+        }
+        return ResultUtil.error("验证码错误");
+    }
+
+    //根据Authorization里的token获取用户信息
+    //携带token的请求才能拦截或放行
+   // @ApiImplicitParam(paramType = "header", name = "Authorization", required = true)
+    //这个token应该在header里
+    @GetMapping("/queryuser")
+    @ApiOperation(value = "Authorization查询用户")
+    public Result queryUserByToken(@RequestHeader("Authorization") String token){
+        String userId = JwtUtil.getToken(token);
+        User user = userService.selectUser(userId);
+        if(user!=null){
+            return ResultUtil.success(user);
+        }
+        return ResultUtil.error();
+    }
+
+    @GetMapping("/verify")
+    @ApiOperation(value = "判断token是否过期")
+    public Result verifyToken(@RequestHeader("Authorization") String token){
+        try {
+            boolean verified = JwtUtil.verifyToken(token);
+            if(verified){
+                return ResultUtil.success();
+            }
+            return ResultUtil.error();
+        }catch (Exception e){
+            return ResultUtil.warning();
         }
     }
 
-    //携带token的请求才能拦截或放行
-    //    @ApiImplicitParam(paramType = "header", name = "token", required = true)
     @PostMapping("/queryall")
     @ApiOperation(value = "查询全部用户")
     public Result queryAll(int a,int b){
@@ -76,6 +112,8 @@ public class UserController {
         }
         return ResultUtil.error();
     }
+
+
 
     @DeleteMapping("/delete")
     @ApiOperation(value = "删除用户")

@@ -16,7 +16,14 @@ public interface CustomerService extends IService<Customer> {
 
     //修改
     public int update(Customer customer);
-    //查询
-    public Page<Customer> selectAll(int c, int size);
+
+    //修改拥有者
+    public int updateOwner(String id,String uid);
+
+    //查询公海全部
+    public Page<Customer> selectPublicAll(int c, int size);
+
+    //查询当前员工全部
+    public Page<Customer> selectUserAll(int c, int size,String id);
     public Customer select(String id);
 }

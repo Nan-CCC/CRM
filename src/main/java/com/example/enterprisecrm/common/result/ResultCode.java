@@ -3,7 +3,7 @@ package com.example.enterprisecrm.common.result;
 public enum ResultCode {
     // 自定义枚举内容
     SUCCESS(200, "Success"),
-
+    WARNING(401,"token过期"),
     ERROR(400, "Error");
 
 

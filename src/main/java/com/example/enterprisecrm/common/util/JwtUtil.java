@@ -22,7 +22,7 @@ public class JwtUtil {
 
     public static String createToken(String id) {
         //过期时间 毫秒
-        Date expireDate = new Date(System.currentTimeMillis() +60*1000);
+        Date expireDate = new Date(System.currentTimeMillis() +24*60*60*1000);
         Map<String, Object> map = new HashMap<>();
         map.put("alg", "HS256");
         map.put("typ", "JWT");
@@ -43,7 +43,7 @@ public class JwtUtil {
     }
 
     /**
-     * 校验token并解析token
+     * 校验token
      */
     public static boolean verifyToken(String token) {
         DecodedJWT jwt;
@@ -56,7 +56,25 @@ public class JwtUtil {
             throw new RuntimeException("token过期");
         }
         return true;
+    }
 
+    /**
+     * 
+     * 解析token
+     */
+    public static String getToken(String token) {
+        DecodedJWT jwt;
+        String userId;
+        try {
+            JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secret)).build();
+            jwt = verifier.verify(token);
+            String nana = jwt.getClaim("nana").asString();
+            userId=nana;
+        } catch (Exception e) {
+            //解码异常则抛出异常
+            throw new RuntimeException("token过期");
+        }
+        return userId;
     }
 }
 

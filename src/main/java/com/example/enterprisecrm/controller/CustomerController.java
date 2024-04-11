@@ -40,6 +40,16 @@ public class CustomerController {
         return ResultUtil.error();
     }
 
+    @PutMapping("updateowner")
+    @ApiOperation("修改客户拥有者")
+    public Result updateOwner(@RequestParam String cid,@RequestParam String uid){
+        int i = service.updateOwner(cid,uid);
+        if(i>0){
+            return ResultUtil.success(i);
+        }
+        return ResultUtil.error();
+    }
+
     @DeleteMapping("delete")
     @ApiOperation("删除客户")
     public Result delete(@RequestParam List<String> ids){
@@ -50,10 +60,20 @@ public class CustomerController {
         return ResultUtil.error();
     }
 
-    @PostMapping("queryall")
-    @ApiOperation("查询全部")
-    public Result query(int c,int size){
-        Page<Customer> page = service.selectAll(c, size);
+    @PostMapping("queryallpublic")
+    @ApiOperation("查询公海全部")
+    public Result queryPublic(@RequestParam int c,@RequestParam int size){
+        Page<Customer> page = service.selectPublicAll(c, size);
+        if(page!=null){
+            return ResultUtil.success(page);
+        }
+        return ResultUtil.error();
+    }
+
+    @PostMapping("queryalluser")
+    @ApiOperation("查询用户全部的客户")
+    public Result query(@RequestParam int c,@RequestParam int size,@RequestParam String id){
+        Page<Customer> page = service.selectUserAll(c,size,id);
         if(page!=null){
             return ResultUtil.success(page);
         }

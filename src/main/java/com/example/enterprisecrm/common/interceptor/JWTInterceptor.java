@@ -22,12 +22,13 @@ public class JWTInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // 从 http 请求头中取出 token
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
         if (StringUtils.isBlank(token)) {
             throw new RuntimeException("无token，请重新登录");
         }
         //解析token
-        return JwtUtil.verifyToken(token);
+        //return JwtUtil.verifyToken(token);
+        return true;
 
 
     }

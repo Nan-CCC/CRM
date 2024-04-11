@@ -35,12 +35,15 @@ public class Customer {
     private String email;
     @ApiModelProperty("备注")
     @TableField("c_notes")
-    private String notes;
+    private String info;
     @ApiModelProperty("营销编号")
     @TableField("market_id")
     private String mid;
     @ApiModelProperty("平台编号")
     @TableField("platform_id")
     private String pid;
+    @ApiModelProperty("所属员工编号")
+    @TableField("owner")
+    private String uid;
 
 }
