@@ -1,6 +1,8 @@
 package com.example.enterprisecrm.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.enterprisecrm.common.Log.BusniessType;
+import com.example.enterprisecrm.common.Log.MyLog;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.common.util.JwtUtil;
@@ -33,6 +35,7 @@ public class UserController {
     RedisTemplate redisTemplate;
     @PostMapping("/login")
     @ApiOperation(value = "登录")
+    @MyLog(title = "登录",optParam = "#{id}",businessType = BusniessType.OTHER)
     public Result login(@RequestParam String id, @RequestParam String password, @RequestParam String verify, HttpSession session){
         String verifyCode = session.getAttribute("verifyCode")+"";
         //测试验证码

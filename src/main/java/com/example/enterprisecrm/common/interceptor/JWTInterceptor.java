@@ -29,8 +29,6 @@ public class JWTInterceptor implements HandlerInterceptor {
         //解析token
         //return JwtUtil.verifyToken(token);
         return true;
-
-
     }
 
 }
