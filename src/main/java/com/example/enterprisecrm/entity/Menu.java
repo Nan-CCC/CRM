@@ -20,7 +20,7 @@ import java.util.List;
 public class Menu {
     @ApiModelProperty("菜单编号")
     @TableId(value = "id",type = IdType.AUTO)
-    private int id;
+    private Integer id;
     @ApiModelProperty("菜单名称")
     @TableField("name")
     private String name;
