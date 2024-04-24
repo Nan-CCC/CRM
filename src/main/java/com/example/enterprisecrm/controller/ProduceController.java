@@ -52,14 +52,21 @@ public class ProduceController {
         return ResultUtil.error();
     }
 
-    @PostMapping("/queryall")
-    @ApiOperation("查看所有产品")
+    @PostMapping("/queryallpage")
+    @ApiOperation("查看所有产品（分页）")
     public Result queryAll(int c,int size){
         Page<Product> productPage = service.selectAll(c, size);
         if(productPage!=null){
             return ResultUtil.success(productPage);
         }
         return ResultUtil.error();
+    }
+
+    @GetMapping("/queryall")
+    @ApiOperation("查看所有产品")
+    public Result queryAll(){
+        List<Product> products = service.selectAll();
+        return ResultUtil.success(products);
     }
 
     @PostMapping("/query")

@@ -1,6 +1,8 @@
 package com.example.enterprisecrm.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.enterprisecrm.common.Log.BusniessType;
+import com.example.enterprisecrm.common.Log.MyLog;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.entity.Customer;
@@ -22,6 +24,7 @@ public class CustomerController {
 
     @PostMapping("add")
     @ApiOperation("增加客户")
+    @MyLog(title = "公海客户",optParam = "#{customer}",businessType = BusniessType.INSERT)
     public Result add(@ModelAttribute Customer customer){
         int i = service.insert(customer);
         if(i>0){
@@ -32,6 +35,7 @@ public class CustomerController {
 
     @PutMapping("update")
     @ApiOperation("修改客户")
+    @MyLog(title = "公海客户",optParam = "#{customer}",businessType = BusniessType.UPDATE)
     public Result update(@ModelAttribute Customer customer){
         int i = service.update(customer);
         if(i>0){
@@ -42,6 +46,7 @@ public class CustomerController {
 
     @PutMapping("updateowner")
     @ApiOperation("修改客户拥有者")
+    @MyLog(title = "公海客户",optParam = "#{cid,uid}",businessType = BusniessType.UPDATE)
     public Result updateOwner(@RequestParam String cid,@RequestParam String uid){
         int i = service.updateOwner(cid,uid);
         if(i>0){
@@ -52,6 +57,7 @@ public class CustomerController {
 
     @DeleteMapping("delete")
     @ApiOperation("删除客户")
+    @MyLog(title = "公海客户",optParam = "#{ids}",businessType = BusniessType.DELETE)
     public Result delete(@RequestParam List<String> ids){
         int i = service.delete(ids);
         if(i>0){
@@ -60,24 +66,12 @@ public class CustomerController {
         return ResultUtil.error();
     }
 
-    @PostMapping("queryallpublic")
-    @ApiOperation("查询公海全部")
-    public Result queryPublic(@RequestParam int c,@RequestParam int size){
-        Page<Customer> page = service.selectPublicAll(c, size);
-        if(page!=null){
-            return ResultUtil.success(page);
-        }
-        return ResultUtil.error();
-    }
-
-    @PostMapping("queryalluser")
+    @PostMapping("queryall")
     @ApiOperation("查询用户全部的客户")
-    public Result query(@RequestParam int c,@RequestParam int size,@RequestParam String id){
-        Page<Customer> page = service.selectUserAll(c,size,id);
-        if(page!=null){
-            return ResultUtil.success(page);
-        }
-        return ResultUtil.error();
+    public Result query(@RequestParam int c,@RequestParam int size,@RequestParam String uid){
+        Page<Customer> page = service.selectAll(c, size, uid);
+        return ResultUtil.success(page);
+
     }
 
     @PostMapping("query")
@@ -88,6 +82,13 @@ public class CustomerController {
             return ResultUtil.success(select);
         }
         return ResultUtil.error();
+    }
+
+    @PostMapping("search")
+    @ApiOperation("模糊搜索客户")
+    public Result search(@RequestParam int current,@RequestParam int size,@RequestParam String column,@RequestParam String like,@RequestParam String owner){
+        Page<Customer> page = service.selectLike(current, size, column, like,owner);
+        return ResultUtil.success(page);
     }
 
 }

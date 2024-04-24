@@ -4,13 +4,17 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.enterprisecrm.entity.Contract;
 import com.example.enterprisecrm.entity.Orders;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 
 public interface ContractService extends IService<Contract> {
     //合同
     //增加
-    public int insert(Contract contract);
+    //
+    public int insert(MultipartFile file, HttpServletRequest req, String oid, Date date,String status);
     //删除
     public int delete(List<String> ids);
     //修改

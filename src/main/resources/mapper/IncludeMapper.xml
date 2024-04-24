@@ -5,7 +5,8 @@
 
 <mapper namespace="com.example.enterprisecrm.mapper.IncludeMapper">
     <resultMap id="IncludeMap" type="com.example.enterprisecrm.entity.Include">
-        <id column="order_id" property="oid"/>
+        <id column="id" property="id" />
+        <result column="order_id" property="oid"/>
         <result column="product_id" property="pid"/>
         <result column="product_num" property="pnum"/>
     </resultMap>

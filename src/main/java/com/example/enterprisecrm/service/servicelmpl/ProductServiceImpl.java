@@ -1,5 +1,6 @@
 package com.example.enterprisecrm.service.servicelmpl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.enterprisecrm.entity.Platform;
@@ -41,6 +42,15 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
         page.setCurrent(c);
         Page<Product> selectPage = mapper.selectPage(page, null);
         return selectPage;
+    }
+
+    @Override
+    public List<Product> selectAll() {
+        QueryWrapper<Product> wrapper = new QueryWrapper<>();
+        wrapper.gt("pd_num",0);
+        List<Product> products = mapper.selectList(wrapper);
+        return products;
+
     }
 
     @Override

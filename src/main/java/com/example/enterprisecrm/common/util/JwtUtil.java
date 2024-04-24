@@ -22,7 +22,7 @@ public class JwtUtil {
 
     public static String createToken(String id) {
         //过期时间 毫秒
-        Date expireDate = new Date(System.currentTimeMillis() +24*60*60*1000);
+        Date expireDate = new Date(System.currentTimeMillis() +3*60*60*1000);
         Map<String, Object> map = new HashMap<>();
         map.put("alg", "HS256");
         map.put("typ", "JWT");

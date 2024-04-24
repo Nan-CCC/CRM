@@ -20,10 +20,10 @@ public interface CustomerService extends IService<Customer> {
     //修改拥有者
     public int updateOwner(String id,String uid);
 
-    //查询公海全部
-    public Page<Customer> selectPublicAll(int c, int size);
-
     //查询当前员工全部
-    public Page<Customer> selectUserAll(int c, int size,String id);
+    public Page<Customer> selectAll(int c, int size,String uid);
     public Customer select(String id);
+
+    //模糊查询
+    public Page<Customer> selectLike(int current,int size,String c,String like,String owner);
 }

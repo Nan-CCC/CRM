@@ -8,5 +8,6 @@
         <id column="pd_id" property="id"/>
         <result column="pd_name" property="name"/>
         <result column="pd_price" property="price"/>
+        <result column="pd_num" property="num"/>
     </resultMap>
 </mapper>

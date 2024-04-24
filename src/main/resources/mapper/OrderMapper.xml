@@ -11,10 +11,10 @@
         <result column="city" property="city"/>
         <result column="district" property="district"/>
         <result column="o_address" property="address"/>
-        <result column="create" property="create"/>
+        <result column="o_create" property="createTime"/>
+        <result column="logical" property="logical"/>
         <result column="user_id" property="uid"/>
         <result column="customer_id" property="cid"/>
         <result column="contract_id" property="ctid"/>
-
     </resultMap>
 </mapper>

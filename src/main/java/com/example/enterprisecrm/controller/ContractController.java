@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.entity.Contract;
-import com.example.enterprisecrm.entity.Orders;
 import com.example.enterprisecrm.service.ContractService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
@@ -22,10 +26,10 @@ public class ContractController {
     @Resource
     private ContractService service;
 
-    @PostMapping("/add")
+    @PostMapping(value = "/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ApiOperation("增加合同")
-    public Result add(@ModelAttribute Contract contract){
-        int i = service.insert(contract);
+    public Result add(@RequestPart("file") MultipartFile file, HttpServletRequest request, @RequestParam  String oid, @RequestParam @DateTimeFormat(pattern ="yyyy-MM-dd") Date date,@RequestParam String status){
+        int i = service.insert(file,request,oid,date,status);
         if(i>0){
             return ResultUtil.success(i);
         }
