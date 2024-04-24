@@ -24,13 +24,10 @@ public class Contract {
     @ApiModelProperty("合同内容(文件路径)")
     @TableField("ct_content")
     private String content;
-    @ApiModelProperty("合同状态")
-    @TableField("ct_status")
-    private String status;
     @ApiModelProperty("提交时间")
-    @TableField("ct_submit")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date submit;
+    @TableField("ct_sign")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date sign;
     @ApiModelProperty("订单编号")
     @TableField("order_id")
     private String oid;

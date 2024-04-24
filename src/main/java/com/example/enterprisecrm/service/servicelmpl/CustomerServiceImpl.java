@@ -43,23 +43,20 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
         return update;
     }
 
-    @Override
-    public Page<Customer> selectPublicAll(int c, int size) {
-        Page<Customer> page = new Page<>();
-        page.setCurrent(c);
-        page.setSize(size);
-        QueryWrapper<Customer> wrapper = new QueryWrapper<>();
-        Page<Customer> select = mapper.selectPage(page, wrapper.isNull("owner").or().eq("owner","").orderByDesc("c_id"));
-        return select;
-    }
 
     @Override
-    public Page<Customer> selectUserAll(int c, int size, String id) {
+    public Page<Customer> selectAll(int c, int size, String owner) {
         Page<Customer> page = new Page<>();
         page.setCurrent(c);
         page.setSize(size);
         QueryWrapper<Customer> wrapper = new QueryWrapper<>();
-        Page<Customer> select = mapper.selectPage(page,wrapper.eq("owner",id).orderByDesc("c_id"));
+        if(owner.equals("0") ||owner=="0"){
+            wrapper.isNull("owner").or().eq("owner","").orderByDesc("c_id");
+        }
+        else {
+            wrapper.eq("owner",owner).orderByDesc("c_id");
+        }
+        Page<Customer> select = mapper.selectPage(page,wrapper);
         return select;
     }
 
@@ -67,5 +64,23 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
     public Customer select(String id) {
         Customer customer = mapper.selectById(id);
         return customer;
+    }
+
+    @Override
+    public Page<Customer> selectLike(int current,int size,String column, String like,String owner) {
+        Page<Customer> page = new Page<>();
+        page.setCurrent(current);
+        page.setSize(size);
+        QueryWrapper<Customer> wrapper = new QueryWrapper<>();
+        if(owner.equals("0") ||owner=="0"){
+            wrapper.isNull("owner").or().eq("owner","");
+        }
+        else {
+            wrapper.eq("owner",owner);
+        }
+        wrapper.like(column,like)
+                .orderByDesc("c_id");
+        Page<Customer> select= mapper.selectPage(page,wrapper);
+        return select;
     }
 }

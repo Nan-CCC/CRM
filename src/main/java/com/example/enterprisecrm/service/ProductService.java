@@ -17,5 +17,6 @@ public interface ProductService extends IService<Product> {
     public int update(Product product);
     //查询
     public Page<Product> selectAll(int c, int size);
+    public List<Product> selectAll();
     public Product select(String id);
 }

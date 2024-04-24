@@ -7,8 +7,7 @@
     <resultMap id="ContractMap" type="com.example.enterprisecrm.entity.Contract">
         <id column="ct_id" property="id"/>
         <result column="ct_content" property="content"/>
-        <result column="ct_status" property="status"/>
-        <result column="ct_submit" property="submit"/>
+        <result column="ct_sign" property="sign"/>
         <result column="order_id" property="oid"/>
     </resultMap>
 </mapper>

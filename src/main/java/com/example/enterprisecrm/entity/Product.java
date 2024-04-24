@@ -24,4 +24,7 @@ public class Product {
     @ApiModelProperty("产品价格")
     @TableField("pd_price")
     private double price;
+    @ApiModelProperty("产品库存")
+    @TableField("pd_num")
+    private Integer num;
 }
