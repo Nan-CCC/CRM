@@ -82,6 +82,7 @@ public class ContractServiceImpl extends ServiceImpl<ContractMapper, Contract> i
         }catch (Exception e){
             throw new RuntimeException("新增合同失败");
         }
+
     }
 
     @Override

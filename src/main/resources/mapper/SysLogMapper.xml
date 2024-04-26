@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.enterprisecrm.mapper.SysLogMapper">
+    <resultMap id="logMap" type="com.example.enterprisecrm.entity.SysLog">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="business_type" property="businessType"></result>
+        <result column="url" property="url"></result>
+        <result column="status" property="status"></result>
+        <result column="param" property="param"></result>
+        <result column="user" property="user"></result>
+        <result column="error_msg" property="errorMsg"></result>
+        <result column="time" property="time"></result>
+    </resultMap>
+</mapper>

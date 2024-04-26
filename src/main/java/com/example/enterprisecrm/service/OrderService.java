@@ -25,12 +25,7 @@ public interface OrderService extends JoinIService<Orders> {
     //删除
     public int delete(String id);
 
-
-
-
-    //修改
     public int update(Orders orders);
-
     //查询
     public Page<Orders> selectAll(int c, int size);
     public Orders select(String id);

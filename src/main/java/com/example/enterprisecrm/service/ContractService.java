@@ -13,12 +13,11 @@ import java.util.List;
 public interface ContractService extends IService<Contract> {
     //合同
     //增加
+
     public int insert(MultipartFile file, HttpServletRequest req, String oid, Date date,String status);
 
     //下载
     public String download(String oid);
-
-
 
 
 
