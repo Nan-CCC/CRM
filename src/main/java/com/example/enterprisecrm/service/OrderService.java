@@ -25,6 +25,9 @@ public interface OrderService extends JoinIService<Orders> {
     //删除
     public int delete(String id);
 
+    //按条件搜索
+    public Page<OrderVO> selectByLike(int current, int size,String status,String column,String like);
+
     public int update(Orders orders);
     //查询
     public Page<Orders> selectAll(int c, int size);

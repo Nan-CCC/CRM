@@ -149,6 +149,47 @@ public class OrderServiceImpl extends JoinServiceImpl<OrderMapper, Orders> imple
     }
 
     @Override
+    public Page<OrderVO> selectByLike(int current, int size,String status, String column, String like) {
+        JoinLambdaWrapper<Orders> wrapper = new JoinLambdaWrapper<>(Orders.class);
+        if(status=="1" ||status.equals("1")){
+            wrapper.eq(Orders::getStatus,"1");
+        }
+        else {
+            wrapper.ne(Orders::getStatus,"1");
+        }
+        wrapper.like(Orders::getStatus,column=="date"||column.equals("date")?like:"")
+                .like(Orders::getId,column=="oid"||column.equals("oid")?like:"")
+                .orderByDesc(Orders::getCreateTime)
+                .selectAs(Orders::getId,OrderVO::getOid)
+                .selectAs(Orders::getProvince,OrderVO::getProvince)
+                .selectAs(Orders::getCity,OrderVO::getCity)
+                .selectAs(Orders::getDistrict,OrderVO::getDistrict)
+                .selectAs(Orders::getAddress,OrderVO::getAddress)
+                .selectAs(Orders::getCreateTime,OrderVO::getCreateTime)
+                .selectAs(Orders::getStatus,OrderVO::getStatus)
+                .leftJoin(Customer.class, Customer::getId, Orders::getCid)
+                .like(Customer::getId,column=="cid"||column.equals("cid")?like:"")
+                .like(Customer::getName,column=="name"||column.equals("name")?like:"")
+                .like(Customer::getPhone,column=="phone"||column.equals("phone")?like:"")
+                .selectAs(Customer::getId,OrderVO::getCid)
+                .selectAs(Customer::getName,OrderVO::getCName)
+                .selectAs(Customer::getPhone,OrderVO::getPhone)
+                .end()
+                .leftJoin(Contract.class,Contract::getId,Orders::getCtid)
+                .selectAs(Contract::getContent,OrderVO::getCtContent)
+                .selectAs(Contract::getSign,OrderVO::getSign)
+                .end()
+                .joinList(OrderVO.class);
+
+        //创建分页
+        Page<OrderVO> page = new Page<>();
+        page.setCurrent(current);
+        page.setSize(size);
+        Page<OrderVO> voPage = mapper.joinSelectPage(page, wrapper, OrderVO.class);
+        return voPage;
+    }
+
+    @Override
     public int update(Orders orders) {
         int i = mapper.updateById(orders);
         return i;

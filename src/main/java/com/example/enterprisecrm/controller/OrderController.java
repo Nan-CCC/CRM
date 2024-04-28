@@ -58,6 +58,13 @@ public class OrderController {
         return ResultUtil.success(voPage);
     }
 
+    @PostMapping("orderbylike")
+    @ApiOperation("根据条件查询订单")
+    public Result selectByLike(@RequestParam int current,@RequestParam int size,@RequestParam String status,@RequestParam String column,@RequestParam String like){
+        Page<OrderVO> voPage = service.selectByLike(current, size,status, column, like);
+        return ResultUtil.success(voPage);
+    }
+
 
     @PutMapping("/update")
     @ApiOperation("修改订单")
