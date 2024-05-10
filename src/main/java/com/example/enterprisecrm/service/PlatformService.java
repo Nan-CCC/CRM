@@ -17,6 +17,6 @@ public interface PlatformService extends IService<Platform> {
     //修改
     public int update(Platform platform);
     //查询
-    public Page<Platform> selectAll(int c,int size);
+    public List<Platform> selectAll();
     public Platform select(String id);
 }

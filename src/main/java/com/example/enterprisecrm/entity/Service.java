@@ -27,15 +27,13 @@ public class Service {
     @ApiModelProperty("服务内容")
     @TableField("s_content")
     private String content;
-
     @ApiModelProperty("处理状态")
     @TableField("s_status")
     private String status;
     @ApiModelProperty("创建时间")
     @TableField("s_create")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date create;
-
+    private Date sCreate;
     @ApiModelProperty("订单编号")
     @TableField("order_id")
     private String oid;

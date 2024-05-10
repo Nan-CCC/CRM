@@ -15,5 +15,6 @@
         <result column="approver" property="approver"/>
         <result column="approver_notes" property="notes"/>
         <result column="mk_pass" property="pass"/>
+        <result column="mk_submit" property="submit" />
     </resultMap>
 </mapper>

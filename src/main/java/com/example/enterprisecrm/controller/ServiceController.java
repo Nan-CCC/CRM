@@ -1,9 +1,11 @@
 package com.example.enterprisecrm.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.enterprisecrm.VO.ServiceVO;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.entity.Orders;
+import com.example.enterprisecrm.entity.Process;
 import com.example.enterprisecrm.entity.Service;
 import com.example.enterprisecrm.service.ServiceService;
 import io.swagger.annotations.Api;
@@ -35,8 +37,8 @@ public class ServiceController {
 
     @PutMapping("/update")
     @ApiOperation("修改服务")
-    public Result update(@ModelAttribute Service service2){
-        int i = service.update(service2);
+    public Result update(String id,String status){
+        int i = service.update(id,status);
         if(i>0){
             return ResultUtil.success(i);
         }
@@ -55,8 +57,8 @@ public class ServiceController {
 
     @PostMapping("/queryall")
     @ApiOperation("查看所有服务")
-    public Result queryAll(int c,int size){
-        Page<Service> page = service.selectAll(c, size);
+    public Result queryAll(int c,int size,String status, String type){
+        Page<Service> page = service.selectAll(c, size,status,type);
         if(page!=null){
             return ResultUtil.success(page);
         }
@@ -71,5 +73,29 @@ public class ServiceController {
             return ResultUtil.success(select);
         }
         return ResultUtil.error();
+    }
+
+    @GetMapping("getContent")
+    @ApiOperation("查询服务内容")
+    public Result selectContent(@RequestParam String sid){
+        List<Process> processes = service.selectContent(sid);
+        return ResultUtil.success(processes);
+    }
+
+    @PostMapping("addContent")
+    @ApiOperation("增加服务内容（发送信息）")
+    public Result insertContent(@RequestBody Process process){
+        int i = service.insertContent(process);
+        if(i==0){
+            return ResultUtil.error();
+        }
+        return ResultUtil.success(i);
+    }
+
+    @PostMapping("endHistory")
+    @ApiOperation("查找客户已完成售后")
+    public Result selectServiceByCid(@RequestParam String cid,@RequestParam String type){
+        List<ServiceVO> serviceVOS = service.selectListByCid(cid, type);
+        return ResultUtil.success(serviceVOS);
     }
 }

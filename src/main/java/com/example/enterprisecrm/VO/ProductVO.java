@@ -17,4 +17,6 @@ public class ProductVO {
     private String pid;
     @ApiModelProperty("产品数量")
     private Integer num;
+    @ApiModelProperty("产品价格")
+    private Double price;
 }

@@ -27,4 +27,5 @@ public class Product {
     @ApiModelProperty("产品库存")
     @TableField("pd_num")
     private Integer num;
+
 }

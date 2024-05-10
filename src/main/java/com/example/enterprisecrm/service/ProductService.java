@@ -2,6 +2,8 @@ package com.example.enterprisecrm.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.enterprisecrm.entity.Implement;
+import com.example.enterprisecrm.entity.Include;
 import com.example.enterprisecrm.entity.Platform;
 import com.example.enterprisecrm.entity.Product;
 
@@ -19,4 +21,6 @@ public interface ProductService extends IService<Product> {
     public Page<Product> selectAll(int c, int size);
     public List<Product> selectAll();
     public Product select(String id);
+
+    public List<Product> selectTop();
 }

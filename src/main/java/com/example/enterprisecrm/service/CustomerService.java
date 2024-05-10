@@ -1,13 +1,12 @@
 package com.example.enterprisecrm.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.enterprisecrm.entity.Customer;
-import com.example.enterprisecrm.entity.Platform;
+import icu.mhb.mybatisplus.plugln.base.service.JoinIService;
 
 import java.util.List;
 
-public interface CustomerService extends IService<Customer> {
+public interface CustomerService extends JoinIService<Customer> {
     //客户
     //增加
     public int insert(Customer customer);
@@ -26,4 +25,11 @@ public interface CustomerService extends IService<Customer> {
 
     //模糊查询
     public Page<Customer> selectLike(int current,int size,String c,String like,String owner);
+
+    public List<Customer> selectList(String uid);
+
+    public Integer noOrderNum(String uid);
+
+    public Integer getPie(String uid,String pid);
+
 }

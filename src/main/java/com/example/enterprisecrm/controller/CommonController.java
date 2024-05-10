@@ -1,9 +1,12 @@
 package com.example.enterprisecrm.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
 import com.example.enterprisecrm.common.util.JwtUtil;
+import com.example.enterprisecrm.entity.SysLog;
 import com.example.enterprisecrm.entity.User;
+import com.example.enterprisecrm.mapper.SysLogMapper;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,12 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 @Controller
 @RequestMapping("common")
@@ -30,6 +35,7 @@ public class CommonController {
 
     @Autowired
     private DefaultKaptcha captchaProducer;
+
 
     @GetMapping("/kaptcha")
     @ApiOperation(value = "验证码")
@@ -57,6 +63,7 @@ public class CommonController {
         responseOutputStream.flush();
         responseOutputStream.close();
     }
+
 
 
 }

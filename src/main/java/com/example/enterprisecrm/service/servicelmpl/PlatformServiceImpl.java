@@ -32,12 +32,9 @@ public class PlatformServiceImpl extends ServiceImpl<PlatformMapper,Platform> im
     }
 
     @Override
-    public Page<Platform> selectAll(int c, int size) {
-        Page<Platform> page = new Page<>();
-        page.setSize(size);
-        page.setCurrent(c);
-        Page<Platform> selectPage = mapper.selectPage(page, null);
-        return selectPage;
+    public List<Platform> selectAll() {
+        List<Platform> platforms = mapper.selectList(null);
+        return platforms;
     }
 
     @Override

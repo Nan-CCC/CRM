@@ -28,4 +28,6 @@ public class Include {
     @ApiModelProperty("产品数量")
     @TableField("product_num")
     private Integer pnum;
+    @TableField("sum(product_num)")
+    private Integer topNum;
 }

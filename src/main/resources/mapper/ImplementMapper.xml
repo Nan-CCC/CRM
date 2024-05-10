@@ -5,7 +5,8 @@
 
 <mapper namespace="com.example.enterprisecrm.mapper.ImplementMapper">
     <resultMap id="ImplementMap" type="com.example.enterprisecrm.entity.Implement">
-        <id column="platform_id" property="pid"/>
+        <id column="id" property="id" />
+        <result column="platform_id" property="pid"/>
         <result column="market_id" property="mid"/>
     </resultMap>
 </mapper>

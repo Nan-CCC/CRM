@@ -32,16 +32,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         menus = mapper.selectList(wrapper);
         for(Menu i : menus){
             QueryWrapper<Menu> wrapper2 = new QueryWrapper<>();
-            wrapper2.eq("pid",i.getId());
+            wrapper2.eq("pid",i.getId())
+                    .and(q->q.eq("role",role).or().eq("role","public"));
              children = mapper.selectList(wrapper2);
             System.out.println("---------------");
             System.out.println(children);
             for(Menu c : children){
                 QueryWrapper<Menu> wrapper3 = new QueryWrapper<>();
-                wrapper3.eq("pid",c.getId());
+                wrapper3.eq("pid",c.getId())
+                        .and(q->q.eq("role",role).or().eq("role","public"));
                 children2 = mapper.selectList(wrapper3);
-                System.out.println("**********");
-                System.out.println(children2);
+
                 c.setChildren(children2);
             }
             i.setChildren(children);

@@ -3,6 +3,8 @@ package com.example.enterprisecrm.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.enterprisecrm.common.result.Result;
 import com.example.enterprisecrm.common.result.ResultUtil;
+import com.example.enterprisecrm.entity.Implement;
+import com.example.enterprisecrm.entity.Include;
 import com.example.enterprisecrm.entity.Platform;
 import com.example.enterprisecrm.entity.Product;
 import com.example.enterprisecrm.service.ProductService;
@@ -77,5 +79,12 @@ public class ProduceController {
             return ResultUtil.success(select);
         }
         return ResultUtil.error();
+    }
+
+    @GetMapping("top")
+    @ApiOperation("热销产品")
+    public Result getTop(){
+        List<Product> list = service.selectTop();
+        return ResultUtil.success(list);
     }
 }

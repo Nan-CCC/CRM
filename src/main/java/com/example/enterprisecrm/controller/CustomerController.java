@@ -91,4 +91,25 @@ public class CustomerController {
         return ResultUtil.success(page);
     }
 
+    @GetMapping("selectList")
+    @ApiOperation("获取全部用户")
+    public Result selectList(@RequestParam  String uid){
+        List<Customer> customers = service.selectList(uid);
+        return ResultUtil.success(customers);
+    }
+
+    @GetMapping("noOrderList")
+    @ApiOperation("获取近一年无订单客户数量")
+    public Result selectNoOrder(@RequestParam  String uid){
+        Integer i = service.noOrderNum(uid);
+        return ResultUtil.success("success",i);
+    }
+
+    @GetMapping("pie")
+    @ApiOperation("获取用户来源分布")
+    public Result selectByPie(@RequestParam String uid,@RequestParam String pid){
+        Integer pie = service.getPie(uid, pid);
+        return ResultUtil.success("success",pie);
+    }
+
 }

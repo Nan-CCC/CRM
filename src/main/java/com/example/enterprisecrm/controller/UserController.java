@@ -39,7 +39,7 @@ public class UserController {
     public Result login(@RequestParam String id, @RequestParam String password, @RequestParam String verify, HttpSession session){
         String verifyCode = session.getAttribute("verifyCode")+"";
         //测试验证码
-        if(verify.equals("123")){
+        if(verify.equals(verifyCode)){
             User login = userService.login(id, password);
             if(login!=null){
                 redisTemplate.delete("token:");
@@ -84,16 +84,11 @@ public class UserController {
         }
     }
 
-    @PostMapping("/queryall")
+    @GetMapping("/queryall")
     @ApiOperation(value = "查询全部用户")
-    public Result queryAll(int a,int b){
-        //a --页码
-        //b --每页条数
-        Page<User> userList = userService.selectAllUser(a,b);
-        if(userList.getTotal()>0){
-            return ResultUtil.success(userList);
-        }
-        return ResultUtil.error();
+    public Result queryAll(){
+        List<User> users = userService.selectAllUser();
+        return ResultUtil.success(users);
     }
 
     @PostMapping("/query")

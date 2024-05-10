@@ -29,12 +29,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper,User> implements Use
     }
 
     @Override
-    public Page<User> selectAllUser(int a,int b) {
-        Page<User> page = new Page<>();
-        page.setCurrent(a);
-        page.setSize(b);
-        userMapper.selectPage(page, null);
-        return page;
+    public List<User> selectAllUser() {
+        List<User> users = userMapper.selectList(null);
+        return users;
     }
 
     @Override

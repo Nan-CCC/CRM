@@ -15,10 +15,14 @@ import lombok.ToString;
 @ToString
 @ApiModel(description = "平台-营销活动 实施实体类")
 public class Implement {
+    @ApiModelProperty("编号")
+    @TableId("id")
+    private Integer id;
     @ApiModelProperty("平台编号")
-    @TableId("platform_id")
+    @TableField("platform_id")
     private String pid;
     @ApiModelProperty("营销编号")
     @TableField("market_id")
     private String mid;
+
 }

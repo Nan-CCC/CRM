@@ -5,9 +5,11 @@
 
 <mapper namespace="com.example.enterprisecrm.mapper.ProcessMapper">
     <resultMap id="processMap" type="com.example.enterprisecrm.entity.Process">
-        <id column="user_id" property="uid"/>
+        <id column="id" property="id" />
+        <result column="c_id" property="cid"/>
+        <result column="user_id" property="uid"/>
         <result column="service_id" property="sid"/>
-        <result column="change" property="change"/>
+        <result column="changeTime" property="changeTime"/>
         <result column="content" property="content"/>
     </resultMap>
 </mapper>

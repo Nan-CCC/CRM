@@ -52,12 +52,12 @@ public class PlatformController {
         return ResultUtil.error();
     }
 
-    @PostMapping("/queryall")
+    @GetMapping("/queryall")
     @ApiOperation("查看所有平台")
-    public Result queryAll(int c,int size){
-        Page<Platform> platformPage = service.selectAll(c, size);
-        if(platformPage!=null){
-            return ResultUtil.success(platformPage);
+    public Result queryAll(){
+        List<Platform> platforms = service.selectAll();
+        if(platforms!=null){
+            return ResultUtil.success(platforms);
         }
         return ResultUtil.error();
     }

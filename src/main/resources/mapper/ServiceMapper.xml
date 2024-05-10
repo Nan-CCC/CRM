@@ -9,7 +9,7 @@
         <result column="s_type" property="type"/>
         <result column="s_content" property="content"/>
         <result column="s_status" property="status"/>
-        <result column="s_create" property="create"/>
+        <result column="s_create" property="sCreate"/>
         <result column="order_id" property="oid"/>
         <result column="customer_id" property="cid"/>
     </resultMap>

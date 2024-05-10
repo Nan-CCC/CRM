@@ -33,5 +33,4 @@ public class AddOrderVO {
     private String cid;
     @ApiModelProperty("产品列表")
     private List<ProductVO> proList;
-
 }

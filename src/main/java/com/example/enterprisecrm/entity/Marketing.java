@@ -31,7 +31,7 @@ public class Marketing {
     private String info;
     @TableField("mk_cost")
     @ApiModelProperty("计划投入")
-    private String cost;
+    private Integer cost;
     @TableField("mk_start")
     @ApiModelProperty("活动开始日期")
     @JsonFormat(pattern = "yyyy-MM-dd")
@@ -53,4 +53,9 @@ public class Marketing {
     @ApiModelProperty("通过时间")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date pass;
+
+    @TableField("mk_submit")
+    @ApiModelProperty("提交时间")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date submit;
 }

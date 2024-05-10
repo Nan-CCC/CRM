@@ -11,7 +11,7 @@ public interface UserService extends IService<User> {
     public User login(String id, String password);
 
     //查询用户（全部）(分页)
-    public Page<User> selectAllUser(int a,int b);
+    public List<User> selectAllUser();
 
     //查询用户（一个）
     public User selectUser(String id);

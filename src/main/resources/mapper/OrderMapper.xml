@@ -16,4 +16,5 @@
         <result column="customer_id" property="cid"/>
         <result column="contract_id" property="ctid"/>
     </resultMap>
+
 </mapper>

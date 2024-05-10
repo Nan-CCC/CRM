@@ -18,14 +18,14 @@ import java.util.Date;
 @ToString
 @ApiModel(description = "营销活动-用户 策划实体类")
 public class Plan {
+    @ApiModelProperty("编号")
+    @TableId("id")
+    private Integer id;
     @ApiModelProperty("营销编号")
-    @TableId("market_id")
+    @TableField("market_id")
     private String mid;
     @ApiModelProperty("员工编号")
     @TableField("user_id")
     private String uid;
-    @ApiModelProperty("活动提交时间")
-    @TableField("submit")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private Date submit;
+
 }
